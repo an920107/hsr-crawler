@@ -27,7 +27,7 @@ def check_if_the_server_is_fine() -> BaseResponse[None]:
     return BaseResponse(message="The server is working fine.", data=None)
 
 
-@app.get("/hsr")
+@app.get("/search", description=f"提供訂票資訊，伺服器將會到高鐵網頁爬取時刻表並回傳，同時也會回傳用於訂票的 `session_id`，其有效時間有 {settings.session_dispose_sec} 秒，僅能使用一次。")
 def get_hsr_time_table(search_req: SearchRequest) -> BaseResponseWithUUID[list[Train]]:
     hsr = HSR(dispose_sec=settings.session_dispose_sec)
     hsr_pool.add(hsr)
@@ -39,7 +39,7 @@ def get_hsr_time_table(search_req: SearchRequest) -> BaseResponseWithUUID[list[T
     return BaseResponseWithUUID(message=message, data=train_list, session_id=hsr.uuid)
 
 
-@app.post("/hsr/{session_id}")
+@app.post("/book/{session_id}", description="根據 `/search` 得到的時刻表，提供欲訂購的班次 index，以及查詢的 `session_id`，伺服器將會自動完成訂票作業並回傳結果截圖的連結。")
 def book_hsr_ticket(book_req: BookRequest, session_id: UUID) -> BaseResponse[str]:
     hsr: HSR = hsr_pool.get(session_id)
     if hsr == None:
