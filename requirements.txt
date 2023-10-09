@@ -1,0 +1,10 @@
+Pillow==9.5.0
+selenium==4.12.0
+ddddocr==1.4.8
+undetected-chromedriver==3.5.3
+fastapi==0.103.2
+uvicorn==0.23.2
+pyimgur==0.6.0
+pydantic-settings==2.0.3
+PyVirtualDisplay==3.0
+
