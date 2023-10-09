@@ -12,7 +12,7 @@ class SearchRequest(BaseModel):
     heart_count: int = 0
     elder_count: int = 0
     student_count: int = 0
-    departure: datetime = datetime.now()
+    departure: datetime
 
     @model_validator(mode="after")
     def check_count_has_value(cls, values: 'SearchRequest'):
