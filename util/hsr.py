@@ -143,7 +143,7 @@ class HSR(Disposable):
             map(lambda e: int(e.text),
                 self.__chrome.find_elements(By.ID, "QueryCode")),
             # e.text: string of discounts splitted by "\n"
-            map(lambda e: list(map(lambda s: Discount(s), e.text.split("\n"))),
+            map(lambda e: list(map(lambda s: Discount(s), e.text.split("\n"))) if len(e.text) > 0 else [],
                 self.__chrome.find_elements(By.CSS_SELECTOR, "div[class='discount uk-flex']")))))
 
         return self.train_list
