@@ -5,7 +5,7 @@ from model.response import BaseResponse, BaseResponseWithUUID
 from model.request import SearchRequest, BookRequest
 from model.train import Train
 
-from fastapi import FastAPI, status
+from fastapi import FastAPI, Request, status
 from fastapi.exceptions import HTTPException
 from pyvirtualdisplay import Display
 from uuid import UUID
@@ -23,8 +23,8 @@ display.start()
 
 
 @app.get("/")
-def check_if_the_server_is_fine() -> BaseResponse[None]:
-    return BaseResponse(message="The server is working fine.", data=None)
+def check_if_the_server_is_fine(request: Request) -> BaseResponse[None]:
+    return BaseResponse(message=f"The server is working fine. Documentation url: {str(request.url).replace('http:', 'https:')}redoc", data=None)
 
 
 @app.get("/search", description=f"提供訂票資訊，伺服器將會到高鐵網頁爬取時刻表並回傳，同時也會回傳用於訂票的 `session_id`，其有效時間有 {settings.session_dispose_sec} 秒，僅能使用一次。")
