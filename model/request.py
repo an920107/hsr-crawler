@@ -16,7 +16,7 @@ class SearchRequest(BaseModel):
 
     @model_validator(mode="after")
     def check_count_has_value(cls, values: 'SearchRequest'):
-        values.departure.replace(tzinfo=None)
+        values.departure =  values.departure.replace(tzinfo=None)
 
         if values.station_from == values.station_to:
             raise ValueError(
