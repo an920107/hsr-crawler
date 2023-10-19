@@ -53,3 +53,4 @@ class BookRequest(BaseModel):
     id_card_number: str
     phone: str
     email: str
+    debug: bool = False

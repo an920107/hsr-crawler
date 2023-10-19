@@ -46,7 +46,8 @@ def book_hsr_ticket(book_req: BookRequest, session_id: UUID) -> BaseResponse[str
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="`session_id` is not found.")
     try:
-        img_url = hsr.book_ticket(book_req)
+        img_url = "https://example.com" if book_req.debug else hsr.book_ticket(
+            book_req)
     except:
         raise HTTPException(status_code=status.HTTP_417_EXPECTATION_FAILED,
                             detail="`session_id` has expired or time table is unavailable.")
