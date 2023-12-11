@@ -65,38 +65,38 @@ class HSR(Disposable):
                 # 輸入訂票資訊
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[3]/div[1]/div/div[1]/div/select"
+                    "//*[@id='BookingS1Form']/div[4]/div[1]/div/div[1]/div/select"
                 )).select_by_visible_text(search_req.station_from)
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[3]/div[1]/div/div[2]/div/select"
+                    "//*[@id='BookingS1Form']/div[4]/div[1]/div/div[2]/div/select"
                 )).select_by_visible_text(search_req.station_to)
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[4]/div[1]/div[1]/div/select"
+                    "//*[@id='BookingS1Form']/div[5]/div/div[1]/div/select"
                 )).select_by_visible_text(str(search_req.adult_count))
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[4]/div[1]/div[2]/div/select"
+                    "//*[@id='BookingS1Form']/div[5]/div/div[2]/div/select"
                 )).select_by_visible_text(str(search_req.child_count))
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[4]/div[1]/div[3]/div/select"
+                    "//*[@id='BookingS1Form']/div[5]/div/div[3]/div/select"
                 )).select_by_visible_text(str(search_req.heart_count))
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[4]/div[1]/div[4]/div/select"
+                    "//*[@id='BookingS1Form']/div[5]/div/div[4]/div/select"
                 )).select_by_visible_text(str(search_req.elder_count))
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[4]/div[1]/div[5]/div/select"
+                    "//*[@id='BookingS1Form']/div[5]/div/div[5]/div/select"
                 )).select_by_visible_text(str(search_req.student_count))
                 self.__chrome.execute_script(
                     f"document.getElementById('toTimeInputField').\
                     setAttribute('value', '{search_req.departure.strftime('%Y/%m/%d')}')")
                 Select(self.__chrome.find_element(
                     By.XPATH,
-                    "//*[@id='BookingS1Form']/div[3]/div[2]/div/div[2]/div[1]/select"
+                    "//*[@id='BookingS1Form']/div[4]/div[2]/div/div[2]/div[1]/select"
                 )).select_by_visible_text(search_req.departure.strftime("%H:%M"))
 
                 # 驗證碼
